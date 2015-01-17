@@ -80,4 +80,31 @@ namespace tut
         ensure_equals( a, c );
     }
 
+    // 3 - Test orientation for the original JTS test case
+    // jts/java/src/com/vividsolutions/jts/algorithm/RobustDeterminant.java, r626
+    template<>
+    template<>
+    void object::test<3>()
+    {
+        Coordinate p0(219.3649559090992, 140.84159161824724);
+        Coordinate p1(168.9018919682399, -5.713787599646864);
+        Coordinate p(186.80814046338352, 46.28973405831556);
+        int orient = CGAlgorithms::orientationIndex(p0, p1, p);
+        int orientInv = CGAlgorithms::orientationIndex(p1, p0, p);
+        ensure( orient != orientInv );
+    }
+
+    // 4 - Test orientation for coordinates from
+    // http://trac.osgeo.org/geos/ticket/716
+    template<>
+    template<>
+    void object::test<4>()
+    {
+        Coordinate p0(0.010044793132693013, 7.903085268568247);
+        Coordinate p1(10.260329547338191, 34.181121949106455);
+        Coordinate p(0.04745459120333707, 7.998990511152711);
+        int orient = CGAlgorithms::orientationIndex(p0, p1, p);
+        int orientInv = CGAlgorithms::orientationIndex(p1, p0, p);
+        ensure( orient != orientInv );
+    }
 } // namespace tut

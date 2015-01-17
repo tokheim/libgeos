@@ -83,10 +83,10 @@ RayCrossingCounter::orientationIndex(const geom::Coordinate& p1,
 	// travelling along p1->p2, turn counter clockwise to get to q return 1,
 	// travelling along p1->p2, turn clockwise to get to q return -1,
 	// p1, p2 and q are colinear return 0.
-	double dx1=p2.x-p1.x;
-	double dy1=p2.y-p1.y;
-	double dx2=q.x-p2.x;
-	double dy2=q.y-p2.y;
+	double dx1=p1.x-q.x;
+	double dy1=p1.y-q.y;
+	double dx2=p2.x-q.x;
+	double dy2=p2.y-q.y;
 	return RobustDeterminant::signOfDet2x2(dx1,dy1,dx2,dy2);
 }
 

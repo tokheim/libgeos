@@ -98,20 +98,6 @@ namespace tut
         ensure_equals( true, isCCW );
     }
 
-    // 4 - Test orientation the narrow (almost collapsed) ring
-    //     resulting in GEOS during execution of the union described
-    //     in http://trac.osgeo.org/geos/ticket/398
-    template<>
-    template<>
-    void object::test<4>()
-    {
-        std::istringstream wkt("0102000000040000000000000000000000841D588465963540F56BFB214F0341408F26B714B2971B40F66BFB214F0341408C26B714B2971B400000000000000000841D588465963540");
-        GeometryPtr geom(breader_.readHEX(wkt));
-        cs_ = geom->getCoordinates();
-        bool isCCW = CGAlgorithms::isCCW(cs_);
-        ensure_equals( isCCW, false );
-    }
-
     // 5 - Test orientation the narrow (almost collapsed) ring
     //     resulting in JTS during execution of the union described
     //     in http://trac.osgeo.org/geos/ticket/398
